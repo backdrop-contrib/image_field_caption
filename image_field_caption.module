@@ -288,6 +288,7 @@ function image_field_caption_field_attach_update($entity_type, $entity) {
       $items = (array) $entity->{$field_name}[$langcode];
       $delta_count = 0;
       foreach ($items as $delta => $item) {
+        if (empty($item['image_field_caption']['value'])) { continue; }
         // We now know we have someting to insert.
         $do_insert = TRUE;
         $record = array(
