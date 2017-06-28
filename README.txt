@@ -18,7 +18,7 @@
 |=======|
 
   1. Add a new image field to a content type, or use an existing image field and
-     configure it t o show the caption elements.
+     configure it to show the caption elements.
   2. Add or edit a node or any other entity with an image field
   3. Go to the image field on the entity form
   4. Enter text into the caption text area and choose format
@@ -49,11 +49,4 @@
   To make changes to the caption css, use this CSS selector:
 
   blockquote.image-field-caption { /* add custom css here */ }
-
-|==================|
-| More Information |
-|==================|
-
-  http://www.drupal.org/project/image_field_caption
-  http://www.tylerfrankenstein.com/image_field_caption
 
