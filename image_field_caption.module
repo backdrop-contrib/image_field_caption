@@ -378,15 +378,19 @@ function image_field_caption_field_attach_delete($entity_type, $entity) {
 function image_field_caption_field_attach_purge($entity_type, $entity, $field, $instance) {
   list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
 
+  $field_name = is_object($field) ? $field->field_name : $field['field_name'];
+
   $table_name = 'field_image_field_caption';
   $revision_name = 'field_image_field_caption_revision';
   db_delete($table_name)
     ->condition('entity_type', $entity_type)
     ->condition('entity_id', $id)
+    ->condition('field_name', $field_name)
     ->execute();
   db_delete($revision_name)
     ->condition('entity_type', $entity_type)
     ->condition('entity_id', $id)
+    ->condition('field_name', $field_name)
     ->execute();
 }
 
