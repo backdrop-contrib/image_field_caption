@@ -446,8 +446,9 @@ function image_field_caption_update_7205() {
     if ($field['type'] == 'image') {
       foreach ($field['bundles'] as $entity_type => $bundles) {
         foreach ($bundles as $bundle) {
-          // Load the instance.
+          // Load the instance and skip any that no longer exist.
           $instance = field_info_instance($entity_type, $field_name, $bundle);
+          if (!$instance) { continue; }
           if (!isset($instance['settings']['image_field_caption']['image_field_caption_wrapper'])) {
             $instance['settings']['image_field_caption']['image_field_caption_wrapper'] = array(
               'image_field_caption_default' => array(
