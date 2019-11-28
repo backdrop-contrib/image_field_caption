@@ -179,7 +179,7 @@ function image_field_caption_field_widget_form_alter(&$element, &$form_state, $c
       // Add all extra functionality provided by the image widget.
       $element[$delta]['#process'][] = 'image_field_caption_widget_process';
       $element[$delta]['#settings']['image_field_caption_default'] = $settings['image_field_caption_wrapper']['image_field_caption_default'];
-   }
+    }
   }
 }
 
@@ -198,7 +198,7 @@ function image_field_caption_widget_process($element, &$form_state, $form) {
     '#type' => 'text_format',
     '#default_value' => isset($item['image_field_caption']['value']) ? $item['image_field_caption']['value'] : $element['#settings']['image_field_caption_default']['value'],
     '#access' => (bool) $item['fid'],
-    '#format' => isset($item['image_field_caption']['format']) ? $item['image_field_caption']['format'] : $element['#settings']['image_field_caption_default']['format']
+    '#format' => isset($item['image_field_caption']['format']) ? $item['image_field_caption']['format'] : $element['#settings']['image_field_caption_default']['format'],
   );
   return $element;
 }
@@ -245,16 +245,20 @@ function image_field_caption_field_attach_update($entity_type, $entity) {
 
     // Skip the caption when it isn't present, or if it is disabled.
     if (
-      !isset($image_field['settings']['image_field_caption']) ||
+      !isset($image_field['settings']['image_field_caption']) || 
       !$image_field['settings']['image_field_caption']['enabled']
-    ) { continue; }
+    ) {
+      continue;
+    }
 
     $field = field_info_field($field_name);
     $table_name = 'field_image_field_caption';
     $revision_name = 'field_image_field_caption_revision';
 
     $all_languages = field_available_languages($entity_type, $field);
-    if (!isset($entity->$field_name)) { continue; }
+    if (!isset($entity->$field_name)) {
+      continue;
+    }
     $field_languages = array_intersect($all_languages, array_keys((array) $entity->$field_name));
 
     // Delete and insert, rather than update, in case a value was added.
@@ -288,7 +292,9 @@ function image_field_caption_field_attach_update($entity_type, $entity) {
       $items = (array) $entity->{$field_name}[$langcode];
       $delta_count = 0;
       foreach ($items as $delta => $item) {
-        if (empty($item['image_field_caption']['value'])) { continue; }
+        if (empty($item['image_field_caption']['value'])) {
+          continue;
+        }
         // We now know we have someting to insert.
         $do_insert = TRUE;
         $record = array(
@@ -346,9 +352,11 @@ function image_field_caption_field_attach_load($entity_type, $entities, $age, $o
     foreach ($results as $row) {
       $field = field_info_instance($entity_type, $row->field_name, $bundle);
       if (
-        !isset($field['settings']['image_field_caption']) ||
+        !isset($field['settings']['image_field_caption']) || 
         !$field['settings']['image_field_caption']['enabled']
-      ) { continue; }
+      ) {
+        continue;
+      }
 
       $item['image_field_caption']['value'] = $row->caption;
       $item['image_field_caption']['format'] = $row->caption_format;

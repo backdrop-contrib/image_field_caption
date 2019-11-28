@@ -47,18 +47,24 @@ function image_field_caption_views_data() {
         $data[$field_name . '_' . $current_table]['table']['join'][$entity_info['base table']] = array(
           'table' => $current_table,
           'handler' => 'image_field_caption_handler_join',
-          'left_table' =>  _field_sql_storage_tablename($field),
+          'left_table' => _field_sql_storage_tablename($field),
           'left_field' => 'entity_id',
           'field' => 'entity_id',
           'extra' => array(
-            array('field' => 'entity_type', 'value' => $entity_type),
-            array('field' => 'field_name', 'value' => $field_name),
+            array(
+              'field' => 'entity_type',
+              'value' => $entity_type,
+            ),
+            array(
+              'field' => 'field_name',
+              'value' => $field_name,
+            ),
           ),
         );
 
         $data[$field_name . '_' . $current_table]['caption'] = array(
           'title' => t('@label (caption)', array('@label' => $label)),
-          'help' =>  t('Appears in: @bundles.', array('@bundles' => implode(', ', $bundles_names))),
+          'help' => t('Appears in: @bundles.', array('@bundles' => implode(', ', $bundles_names))),
           // Information for accepting a nid as an argument
           'field' => array(
             'handler' => 'views_handler_field',
@@ -85,18 +91,24 @@ function image_field_caption_views_data() {
           $data[$field_name . '_' . $revision_table]['table']['join'][$entity_info['revision table']] = array(
             'table' => $revision_table,
             'handler' => 'image_field_caption_handler_join',
-            'left_table' =>  _field_sql_storage_revision_tablename($field),
+            'left_table' => _field_sql_storage_revision_tablename($field),
             'left_field' => 'revision_id',
             'field' => 'revision_id',
             'extra' => array(
-              array('field' => 'entity_type', 'value' => $entity_type),
-              array('field' => 'field_name', 'value' => $field_name),
+              array(
+                'field' => 'entity_type',
+                'value' => $entity_type,
+              ),
+              array(
+                'field' => 'field_name',
+                'value' => $field_name,
+              ),
             ),
           );
 
           $data[$field_name . '_' . $revision_table]['caption'] = array(
             'title' => t('@label (caption)', array('@label' => $label)),
-            'help' =>  t('Appears in: @bundles.', array('@bundles' => implode(', ', $bundles_names))),
+            'help' => t('Appears in: @bundles.', array('@bundles' => implode(', ', $bundles_names))),
             // Information for accepting a nid as an argument
             'field' => array(
               'handler' => 'views_handler_field',
