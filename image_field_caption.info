@@ -1,6 +1,7 @@
+type = module
 name = Image Field Caption
 description = Provides a caption textarea for image fields.
-core = 7.x
+backdrop = 1.x
+version = 1.x-2.3.0
 package = Other
 dependencies[] = image
-files[]=views/image_field_caption_handler_join.inc

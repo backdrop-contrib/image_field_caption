@@ -245,7 +245,7 @@ function image_field_caption_field_attach_update($entity_type, $entity) {
 
     // Skip the caption when it isn't present, or if it is disabled.
     if (
-      !isset($image_field['settings']['image_field_caption']) || 
+      !isset($image_field['settings']['image_field_caption']) ||
       !$image_field['settings']['image_field_caption']['enabled']
     ) {
       continue;
@@ -352,7 +352,7 @@ function image_field_caption_field_attach_load($entity_type, $entities, $age, $o
     foreach ($results as $row) {
       $field = field_info_instance($entity_type, $row->field_name, $bundle);
       if (
-        !isset($field['settings']['image_field_caption']) || 
+        !isset($field['settings']['image_field_caption']) ||
         !$field['settings']['image_field_caption']['enabled']
       ) {
         continue;
@@ -460,5 +460,15 @@ function image_field_caption_views_api() {
   return array(
     'api' => 3,
     'path' => drupal_get_path('module', 'image_field_caption') . '/views',
+  );
+}
+
+
+/**
+ * Implements hook_autoload_info().
+ */
+function image_field_caption_autoload_info() {
+  return array(
+    'image_field_caption_handler_join' => 'views/image_field_caption_handler_join.inc',
   );
 }
