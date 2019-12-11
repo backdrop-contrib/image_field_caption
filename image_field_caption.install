@@ -380,7 +380,7 @@ function image_field_caption_update_7201() {
     }
   }
 
-  drupal_flush_all_caches();
+  backdrop_flush_all_caches();
 }
 
 /**
@@ -408,8 +408,6 @@ function image_field_caption_update_7203() {
  * Reason: ['image_field_caption'] becomes the wrapper for additional settings.
  */
 function image_field_caption_update_7204() {
-  // Note: requires Drupal 7.22 or newer as field_info_field_map()
-  // function was introduce in 7.22.
 
   // Grab all of the fields.
   $fields = field_info_field_map();

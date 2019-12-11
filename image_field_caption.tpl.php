@@ -3,7 +3,7 @@
  * @file
  * Template for each image caption.
  *
- * $image - contains the image html rendered by Drupal
+ * $image - contains the image html rendered by Backdrop
  * $caption - contains the image field caption string
  */
 ?>
